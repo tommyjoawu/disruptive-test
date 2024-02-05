@@ -1,0 +1,16 @@
+/ %nav.navbar.bg-dark.border-bottom.border-body{"data-bs-theme" => "dark"}
+%nav.navbar.navbar-expand-lg.bg-body-tertiary.bg-dark{"data-bs-theme" => "dark"}
+  .container-fluid
+    %a.navbar-brand{href: "#"} Navbar
+    %button.navbar-toggler{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNav", "data-bs-toggle" => "collapse", type: "button"}
+      %span.navbar-toggler-icon
+    #navbarNav.collapse.navbar-collapse
+      %ul.navbar-nav
+        %li.nav-item
+          %a.nav-link.active{"aria-current" => "page", href: "#"} Home
+        %li.nav-item
+          %a.nav-link{href: "#"} Features
+        %li.nav-item
+          %a.nav-link{href: "#"} Pricing
+        %li.nav-item
+          %a.nav-link.disabled{"aria-disabled" => "true"} Disabled
