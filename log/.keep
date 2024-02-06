@@ -1,8 +1,28 @@
-api key: 2C463979-7990-4EC0-AF9C-2BAA16C064D1
+####This is a file i usually use to keep code that might be useful later on, just in case
 
+not_created = true
+tries = 0
+while not_created && tries < 3
+	begin
+		sleep 1
+		exchange_rate = api.exchange_rates_get_specific_rate(asset_id_base: coin.code, asset_id_quote: 'USD')
+		
 
-{ "type": "hello", "apikey": "2C463979-7990-4EC0-AF9C-2BAA16C064D1", "heartbeat": false, "subscribe_data_type": ["trade", "quote", "book50"] }
-
-
-test_key = '2C463979-7990-4EC0-AF9C-2BAA16C064D1'
-api = CoinAPIv1::Client.new(api_key: test_key)
+		rate = exchange_rate[:rate]
+		balance = self.balance
+		coin_equivalent = calculate_coin_equivalent(self.balance, rate)
+		anual_profit = calculate_anual_profit(balance, coin.monthly_interest)
+		coin_instance = self.coin_instances.create(
+			coin_id: coin.id, 
+			currency: self.currency,
+			value_at_the_time: rate,
+			coin_equivalent: coin_equivalent,
+			anual_profit: anual_profit,
+			total: balance + anual_profit
+			)
+		not_created = false
+	rescue
+		tries += 1
+		puts "API Error - Coin Code: #{coin.code}"
+	end
+end

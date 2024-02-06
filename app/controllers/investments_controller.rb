@@ -1,5 +1,10 @@
 class InvestmentsController < ApplicationController
-  before_action :set_investment, only: %i[ show edit update destroy ]
+
+  include ActionView::Helpers::NumberHelper
+  require 'roo'
+  require 'json'
+
+  before_action :set_investment, only: %i[ show edit update destroy download_as_csv]
 
   # GET /investments or /investments.json
   def index
@@ -8,6 +13,18 @@ class InvestmentsController < ApplicationController
 
   # GET /investments/1 or /investments/1.json
   def show
+    @records = @investment.coin_instances
+    respond_to do |format|
+      format.html
+      format.csv { send_data @investment.records_to_csv, filename: "investment_#{@investment.id}_exchange_rates_#{DateTime.now.strftime("%d%m%Y%H%M")}.csv"}
+      # json_data = @records.to_json(include: :investment)
+
+      json_data = @records.to_json(include: {
+        investment: {},
+        coin: {}
+      })
+      format.json { send_data json_data, filename: "investment_#{@investment.id}_exchange_rates_#{DateTime.now.strftime("%d%m%Y%H%M")}.json" }      
+    end
   end
 
   # GET /investments/new
@@ -25,7 +42,7 @@ class InvestmentsController < ApplicationController
 
     respond_to do |format|
       if @investment.save
-        format.html { redirect_to investment_url(@investment), notice: "Investment was successfully created." }
+        format.html { redirect_to investment_path(@investment), notice: "Investment was successfully created." }
         format.json { render :show, status: :created, location: @investment }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,6 +82,6 @@ class InvestmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def investment_params
-      params.require(:investment).permit(:balance)
+      params.require(:investment).permit(:balance, :currency)
     end
 end

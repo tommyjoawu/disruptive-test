@@ -1,9 +1,54 @@
-%p#notice= notice
+.alert.alert-success{role: "alert"}
+  = notice
 
-%p
-  %b Balance:
-  = @investment.balance
+.row.text-center
+  .col-12
+    %h1
+      %b 
+        = "Balance: #{number_to_currency(@investment.balance, :unit => "$")}"
+%hr
+.row.text-center
+  .col-12
+    %h5
+      = "Current Rates as of: #{DateTime.now}"
+%br
+.row.text-right
+  .col-12
+    / = link_to "Download as CSV", download_as_csv_investment_path(@investment)
+    / = link_to 'Download CSV Report', download_as_csv_investment_path(@investment, format: :csv), class: 'btn btn-primary'
+    = link_to 'Download CSV Report', investment_path(@investment, format: 'csv'), class: 'btn btn-primary'
+    = link_to 'Download JSON Report', investment_path(@investment, format: 'json'), target: "_blank", class: 'btn btn-primary'
+%br
+%table.table.table-hover.table-striped
+  %thead
+    %tr
+      %th.text-left Coin
+      %th.text-right Current Rate
+      %th.text-center Monthly Interest
+      %th.text-right Interest (Yearly)
+      %th.text-right Total
 
-= link_to 'Edit', edit_investment_path(@investment)
-\|
-= link_to 'Back', investments_path
+  %tbody
+    - @investment.coin_instances.each do |ci|
+      %tr
+        %td.text-left
+          - if ci.coin.code == "BTC"
+            = image_tag("#{image_url('bitcoin.png')}", class: "img-responsive", style: "width: 30px; height: 30px;")
+          - elsif ci.coin.code == "ETH"
+            = image_tag("#{image_url('ethereum.png')}", class: "img-responsive", style: "width: 30px; height: 30px;")
+          - else
+            = image_tag("#{image_url('cardano.png')}", class: "img-responsive", style: "width: 30px; height: 30px;")
+          = "#{ci.coin.description} (#{ci.coin.code})"
+        %td.text-right
+          %span.badge.badge-info 
+            = number_to_currency(ci.value_at_the_time, :unit => "$")
+        %td.text-center
+          %span.badge.badge-dark
+            = "#{ci.coin.monthly_interest} %"
+        %td.text-right
+          %span.badge.badge-success 
+            = number_to_currency(ci.anual_profit, :unit => "$")
+        %td.text-right
+          %span.badge.badge-success 
+            = number_to_currency(ci.total, :unit => "$")
+

@@ -1,12 +1,54 @@
-%table.table.table-hover.table-striped
-	%thead
-		%tr
-			%th{scope: "col"} Moneda
-			%th{scope: "col"} Valor en USD
-	%tbody
-		- @exchange_rates.each do |exchange_rate|
-			%tr
-				%td 
-					= exchange_rate[:asset_id_base]
-				%td 
-					= exchange_rate[:rate]
+/ %table.table.table-hover.table-striped
+/ 	%thead
+/ 		%tr
+/ 			%th{scope: "col"} Moneda
+/ 			%th{scope: "col"} Valor en USD
+/ 	%tbody
+/ 		- @exchange_rates.each do |exchange_rate|
+/ 			%tr
+/ 				%td 
+/ 					= exchange_rate[:asset_id_base]
+/ 				%td 
+/ 					= exchange_rate[:rate]
+
+
+.jumbotron.text-center
+  %h1.display-4 Crypto Investment Calculator
+  %hr
+  %p.lead Are you ready to embark on a journey towards financial growth and prosperity? Look no further! We offer you a seamless platform to explore and capitalize on the exciting world of cryptocurrency investment.
+  %hr.my-4
+  %p Calculate your first crypto investment!
+  %p.lead
+    %a.btn.btn-primary.btn-lg{href: new_investment_path, role: "button"} Invest!
+
+%hr
+.row.text-center
+  .col-12
+    %h1
+      Supported Coins
+.row.mt-5
+  - @coins.each do |coin|
+    .col-4
+      .card.text-center
+        .card-header
+          %h4
+            %b
+              = coin.description
+        .card-body
+          %h5.card-title  
+            .row.mt-4
+              .offset-4.col-4
+                // I usually create a bucket in AWS S3 to handle images and files but this should work for the test
+                - if coin.code == "BTC"
+                  = image_tag("#{image_url('bitcoin.png')}", class: "img-responsive", style: "width: 80px; height: 80px;")
+                - elsif coin.code == "ETH"
+                  = image_tag("#{image_url('ethereum.png')}", class: "img-responsive", style: "width: 80px; height: 80px;")
+                - else
+                  = image_tag("#{image_url('cardano.png')}", class: "img-responsive", style: "width: 80px; height: 80px;")
+          %p.card-text 
+            = "#{coin.description} is a decentralized digital currency that enables peer-to-peer transactions without the need for intermediaries."
+          
+        .card-footer.text-muted
+.mt-5
+
+/ - console

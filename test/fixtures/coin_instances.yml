@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  coin_id: 1
+  investment_id: 1
+  value_at_the_time: 1.5
+  currency: MyString
+  anual_profit: 1.5
+
+two:
+  coin_id: 1
+  investment_id: 1
+  value_at_the_time: 1.5
+  currency: MyString
+  anual_profit: 1.5

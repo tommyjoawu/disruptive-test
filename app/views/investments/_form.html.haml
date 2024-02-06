@@ -1,13 +1,15 @@
-= form_for @investment do |f|
-  - if @investment.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@investment.errors.count, "error")} prohibited this investment from being saved:"
-      %ul
-        - @investment.errors.full_messages.each do |message|
-          %li= message
+= simple_form_for @investment, defaults: { input_html: { class: 'form-control' } } do |f|
 
-  .field
-    = f.label :balance
-    = f.text_field :balance
-  .actions
-    = f.submit 'Save'
+  = f.hidden_field :currency, value: "$" 
+  .card.border-dark.text-center
+    .card-body
+      .row
+        .offset-3.col-6
+          = f.input :balance, placeholder: "Example: 100"
+
+      %br
+      .row
+        .col-12
+          = link_to 'Back', investments_path, class: "btn btn-primary"
+          - if params[:action] != "show"
+            = f.submit 'Invest!', class: "btn btn-primary"

@@ -1,21 +1,28 @@
-%h1 Listing investments
+.row.text-center
+  .col-12
+    %h1 Investments Records
 
-%table
+%table.table.table-hover.table-striped
   %thead
     %tr
-      %th Balance
-      %th
-      %th
-      %th
+      %th.text-center ID
+      %th.text-center Currency
+      %th.text-right Balance
+      %th.text-center Options
 
   %tbody
     - @investments.each do |investment|
       %tr
-        %td= investment.balance
-        %td= link_to 'Show', investment
-        %td= link_to 'Edit', edit_investment_path(investment)
-        %td= link_to 'Destroy', investment, method: :delete, data: { confirm: 'Are you sure?' }
+        %td.text-center
+          = investment.id
+        %td.text-center
+          %h3
+            %span.badge.badge-success
+              = investment.currency
+        %td.text-right
+          %h3
+            %span.badge.badge-success
+              = number_to_currency(investment.balance, :unit => "$")
+        %td.text-center
+          = link_to "Show", investment, class: "btn btn-primary"
 
-%br
-
-= link_to 'New Investment', new_investment_path

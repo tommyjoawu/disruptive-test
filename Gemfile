@@ -54,6 +54,8 @@ gem "haml-rails", "~> 2.0"
 gem 'html2haml'
 gem "awesome_print"
 gem 'simple_form'
+gem 'csv'
+gem 'roo'
 
 
 group :development, :test do

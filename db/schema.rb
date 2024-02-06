@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_06_014948) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_06_192810) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "coin_instances", force: :cascade do |t|
+    t.integer "coin_id"
+    t.integer "investment_id"
+    t.float "value_at_the_time"
+    t.string "currency"
+    t.float "anual_profit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "coin_equivalent"
+    t.float "total"
+  end
 
   create_table "coins", force: :cascade do |t|
     t.string "description"

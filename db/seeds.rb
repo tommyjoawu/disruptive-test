@@ -21,4 +21,15 @@ ActiveRecord::Base.transaction do
 	GlobalParameter.create!([{description: "CoinApiKey", code: "coinapi", value: "2C463979-7990-4EC0-AF9C-2BAA16C064D1"}]) if GlobalParameter.find_by(code: "coinapi").nil?
 
 	puts "Finished creating GlobalParameters"
+
+
+	puts "Creating Coins"
+
+	clear_and_reset('Coin')
+
+	Coin.create!([{description: "Bitcoin", code: "BTC", monthly_interest: 5}]) if Coin.find_by(code: "BTC").nil?
+	Coin.create!([{description: "Ether", code: "ETH", monthly_interest: 4.2}]) if Coin.find_by(code: "ETH").nil?
+	Coin.create!([{description: "Cardano", code: "ADA", monthly_interest: 1}]) if Coin.find_by(code: "ADA").nil?
+
+	puts "Finished creating Coins"
 end
