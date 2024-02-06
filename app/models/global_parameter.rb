@@ -1,0 +1,2 @@
+class GlobalParameter < ApplicationRecord
+end

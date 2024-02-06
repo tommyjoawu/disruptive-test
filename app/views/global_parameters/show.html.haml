@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Description:
+  = @global_parameter.description
+%p
+  %b Code:
+  = @global_parameter.code
+
+= link_to 'Edit', edit_global_parameter_path(@global_parameter)
+\|
+= link_to 'Back', global_parameters_path

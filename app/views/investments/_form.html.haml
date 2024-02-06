@@ -1,0 +1,13 @@
+= form_for @investment do |f|
+  - if @investment.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@investment.errors.count, "error")} prohibited this investment from being saved:"
+      %ul
+        - @investment.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :balance
+    = f.text_field :balance
+  .actions
+    = f.submit 'Save'

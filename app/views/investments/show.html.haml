@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Balance:
+  = @investment.balance
+
+= link_to 'Edit', edit_investment_path(@investment)
+\|
+= link_to 'Back', investments_path

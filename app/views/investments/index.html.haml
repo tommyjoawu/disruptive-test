@@ -1,0 +1,21 @@
+%h1 Listing investments
+
+%table
+  %thead
+    %tr
+      %th Balance
+      %th
+      %th
+      %th
+
+  %tbody
+    - @investments.each do |investment|
+      %tr
+        %td= investment.balance
+        %td= link_to 'Show', investment
+        %td= link_to 'Edit', edit_investment_path(investment)
+        %td= link_to 'Destroy', investment, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Investment', new_investment_path

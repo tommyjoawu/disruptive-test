@@ -1,0 +1,8 @@
+api key: 2C463979-7990-4EC0-AF9C-2BAA16C064D1
+
+
+{ "type": "hello", "apikey": "2C463979-7990-4EC0-AF9C-2BAA16C064D1", "heartbeat": false, "subscribe_data_type": ["trade", "quote", "book50"] }
+
+
+test_key = '2C463979-7990-4EC0-AF9C-2BAA16C064D1'
+api = CoinAPIv1::Client.new(api_key: test_key)

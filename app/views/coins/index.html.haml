@@ -1,0 +1,25 @@
+%h1 Listing coins
+
+%table
+  %thead
+    %tr
+      %th Description
+      %th Code
+      %th Monthly interest
+      %th
+      %th
+      %th
+
+  %tbody
+    - @coins.each do |coin|
+      %tr
+        %td= coin.description
+        %td= coin.code
+        %td= coin.monthly_interest
+        %td= link_to 'Show', coin
+        %td= link_to 'Edit', edit_coin_path(coin)
+        %td= link_to 'Destroy', coin, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Coin', new_coin_path

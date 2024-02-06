@@ -1,0 +1,19 @@
+= form_for @coin do |f|
+  - if @coin.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@coin.errors.count, "error")} prohibited this coin from being saved:"
+      %ul
+        - @coin.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :description
+    = f.text_field :description
+  .field
+    = f.label :code
+    = f.text_field :code
+  .field
+    = f.label :monthly_interest
+    = f.text_field :monthly_interest
+  .actions
+    = f.submit 'Save'

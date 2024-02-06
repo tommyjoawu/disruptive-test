@@ -68,6 +68,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
+    awesome_print (1.9.2)
     better_errors (2.10.1)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
@@ -218,6 +219,9 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     sexp_processor (4.17.1)
+    simple_form (5.3.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -259,6 +263,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  awesome_print
   better_errors
   binding_of_caller
   bootsnap
@@ -274,6 +279,7 @@ DEPENDENCIES
   rails (~> 7.0.0)
   rails_live_reload
   selenium-webdriver
+  simple_form
   sprockets-rails
   stimulus-rails
   turbo-rails
