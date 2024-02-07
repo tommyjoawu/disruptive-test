@@ -28,8 +28,11 @@
 /       = "Current Rates as of: #{@investment.created_at.strftime("%d-%m-%Y %H:%M:%S")}"
 %br
 
-- if @records
-
+- if @records.empty?
+  .row.text-center
+    .col-12
+      %h2
+        CoinAPI isn't working, please refresh this page later
 - else
   .row.text-right
     .col-12

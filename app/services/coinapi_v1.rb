@@ -3,7 +3,7 @@ require 'openssl'
 require 'date'
 require 'json'
 
-module CoinAPIv1
+module CoinapiV1
   class Client
     def initialize(api_key:, options: {})
       @api_key = api_key

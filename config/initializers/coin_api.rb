@@ -1,1 +1,1 @@
-require Rails.root.join('app', 'services', 'coinapi_v1')
+# require Rails.root.join('app', 'services', 'coinapi_v1')

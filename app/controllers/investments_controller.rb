@@ -15,7 +15,6 @@ class InvestmentsController < ApplicationController
   # GET /investments/1 or /investments/1.json
   def show
     @records = @investment.coin_instances
-
     tries = 0
     while @records.empty? && tries <= 3
       @investment.create_coin_instances

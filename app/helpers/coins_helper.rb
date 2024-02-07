@@ -1,6 +1,6 @@
 module CoinsHelper
 	def initiate_coin_api
-		api = CoinAPIv1::Client.new(api_key: GlobalParameter.find_by(code: "coinapi").value)
+		api = CoinapiV1::Client.new(api_key: GlobalParameter.find_by(code: "coinapi").value)
 	end
 
 	def calculate_coin_equivalent(investment, coin_rate)
