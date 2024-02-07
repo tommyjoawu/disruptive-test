@@ -16,14 +16,14 @@ class InvestmentsController < ApplicationController
   def show
     @records = @investment.coin_instances
 
-    # tries = 0
-    # while @records.empty? && tries <= 3
-    #   @investment.create_coin_instances
-    #   @records = @investment.coin_instances
-    #   tries += 1
-    #   sleep 2
-    #   puts "Failed Creating Coin Instances -- API ERROR"
-    # end
+    tries = 0
+    while @records.empty? && tries <= 3
+      @investment.create_coin_instances
+      @records = @investment.coin_instances
+      tries += 1
+      sleep 2
+      puts "Failed Creating Coin Instances -- API ERROR"
+    end
 
     respond_to do |format|
       format.html
