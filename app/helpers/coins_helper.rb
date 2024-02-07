@@ -35,7 +35,6 @@ module CoinsHelper
 		# 	end
 		# end
 
-		# results = api.exchange_rates_get_all_current_rates(asset_id_base: "USD")
 		begin
 			results = api.metadata_list_all_assets
 			coins.pluck(:code).each do |coin|
