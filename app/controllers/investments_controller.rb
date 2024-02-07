@@ -15,6 +15,16 @@ class InvestmentsController < ApplicationController
   # GET /investments/1 or /investments/1.json
   def show
     @records = @investment.coin_instances
+
+    # tries = 0
+    # while @records.empty? && tries <= 3
+    #   @investment.create_coin_instances
+    #   @records = @investment.coin_instances
+    #   tries += 1
+    #   sleep 2
+    #   puts "Failed Creating Coin Instances -- API ERROR"
+    # end
+
     respond_to do |format|
       format.html
       format.csv { send_data @investment.records_to_csv, filename: "investment_#{@investment.id}_exchange_rates_#{DateTime.now.strftime("%d%m%Y%H%M")}.csv"}

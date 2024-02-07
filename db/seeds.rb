@@ -14,13 +14,15 @@ def clear_and_reset(classname)
 end
 
 ActiveRecord::Base.transaction do
+	puts "Starting Seeds"
+
 	puts "Creating GlobalParameters"
 
 	clear_and_reset('GlobalParameter')
 
 	GlobalParameter.create!([{description: "CoinApiKey", code: "coinapi", value: "2C463979-7990-4EC0-AF9C-2BAA16C064D1"}]) if GlobalParameter.find_by(code: "coinapi").nil?
 
-	puts "Finished creating GlobalParameters"
+	puts "Finished Creating GlobalParameters"
 
 
 	puts "Creating Coins"
@@ -31,5 +33,8 @@ ActiveRecord::Base.transaction do
 	Coin.create!([{description: "Ether", code: "ETH", monthly_interest: 4.2}]) if Coin.find_by(code: "ETH").nil?
 	Coin.create!([{description: "Cardano", code: "ADA", monthly_interest: 1}]) if Coin.find_by(code: "ADA").nil?
 
-	puts "Finished creating Coins"
+	puts "Finished Creating Coins"
+
+	puts "Finished Running Seeds"
+	puts "==========================================================================="
 end

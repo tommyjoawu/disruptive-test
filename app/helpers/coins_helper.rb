@@ -17,7 +17,7 @@ module CoinsHelper
 
 		exchange_rates = []
 
-		### At first I was getting all 3 coins one by one using the exchange_rates_get_specific_rate but since it seems like there is a limit and that is causing some errors because its returning nil, I am going to use the method that gives me all the coins and i will filter them myself
+		### At first I was getting all 3 coins one by one using the exchange_rates_get_specific_rate but since it seems like there is an API limit and that is causing some errors because its returning nil, I am going to use the method that gives me all the coins and i will filter them myself
 
 		# coins.each do |coin|
 		# 	not_created = true
