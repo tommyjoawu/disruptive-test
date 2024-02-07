@@ -29,7 +29,7 @@
 %br
 
 - if @records
-  
+
 - else
   .row.text-right
     .col-12
@@ -71,19 +71,3 @@
             %span.badge.badge-success 
               = number_to_currency(ci.total, :unit => "$")
 
-:javascript
-  document.addEventListener('DOMContentLoaded', function() {
-    // setInterval(function() {
-    //   alert("hey");
-    //   $.ajax({
-    //     url: '/api/data',
-    //     dataType: 'json',
-    //     success: function(data) {
-    //       // Update the content on the page with the fetched data
-    //       // For example, update the DOM elements with new values
-    //       $('#data-container').text(data.some_value);
-    //     }
-    //   });
-    // }, 600000); // 10 minutes in milliseconds
-    // }, 50000); // 50 seconds in milliseconds
-  });
