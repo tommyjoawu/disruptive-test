@@ -1,0 +1,33 @@
+- if @exchange_rates.empty?
+  .row.text-center.mt-5
+    .col-12
+      %h2
+        CANNOT FETCH DATA FROM API - ERROR FROM API
+- else
+  %table.table.table-hover.table-striped.mt-5
+    %thead
+      %tr
+        %th.text-left Coin
+        %th.text-right Current Rate
+        %th.text-center Monthly Interest
+        / %th.text-right Interest (Yearly)
+        / %th.text-right Total
+
+    %tbody
+      - @coins.each do |c|
+        - exchange_rate = @exchange_rates.find{ |r|  r[:asset_id] == c.code}
+        %tr
+          %td.text-left
+            - if c.code == "BTC"
+              = image_tag("#{image_url('bitcoin.png')}", class: "img-responsive", style: "width: 30px; height: 30px;")
+            - elsif c.code == "ETH"
+              = image_tag("#{image_url('ethereum.png')}", class: "img-responsive", style: "width: 30px; height: 30px;")
+            - else
+              = image_tag("#{image_url('cardano.png')}", class: "img-responsive", style: "width: 30px; height: 30px;")
+            = "#{c.description} (#{c.code})"
+          %td.text-right
+            %span.badge.badge-info 
+              = number_to_currency(exchange_rate[:price_usd], :unit => "$")
+          %td.text-center
+            %span.badge.badge-dark
+              = "#{c.monthly_interest} %"

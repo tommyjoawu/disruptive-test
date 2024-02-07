@@ -19,12 +19,12 @@ class Investment < ApplicationRecord
 			#We will create a Coin Instance for each existing Coin record, for the purpose of this test there will be only 3 Coins available so the entire system is designed having this in mind, if there were many more possible Coins I would take another approach since it wouldn't be practical to generate so many records after every Investment made
 
 			#We will by default handle everything with USD so we won't bother thinking about giving it a variable, we can just hard code it
-
-			exchange_rate = exchange_rates.find{|r| r[:asset_id_base] == coin.code}
+			exchange_rate = exchange_rates.find{|r| r[:asset_id] == coin.code}
 
 			#When exchange_rate isn't present, it means that the search had 0 matches which means that the API didn't return one of the Coins (ETH, BTC or ADA, usually ADA is the main culprit, since we do not have control over the API, we will just skip the missing coin)
 			if exchange_rate.present?
-				rate = exchange_rate[:rate]
+				
+				rate = exchange_rate[:price_usd]
 				balance = self.balance
 				coin_equivalent = calculate_coin_equivalent(self.balance, rate)
 				anual_profit = calculate_anual_profit(balance, coin.monthly_interest)

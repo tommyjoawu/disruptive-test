@@ -1,5 +1,6 @@
-.alert.alert-success{role: "alert"}
-  = notice
+- if notice.present?
+  .alert.alert-success{role: "alert"}
+    = notice
 
 .row.text-center
   .col-12
@@ -10,7 +11,7 @@
 .row.text-center
   .col-12
     %h5
-      = "Current Rates as of: #{DateTime.now}"
+      = "Current Rates as of: #{@investment.created_at.strftime("%d-%m-%Y %H:%M:%S")}"
 %br
 .row.text-right
   .col-12
@@ -40,7 +41,7 @@
             = image_tag("#{image_url('cardano.png')}", class: "img-responsive", style: "width: 30px; height: 30px;")
           = "#{ci.coin.description} (#{ci.coin.code})"
         %td.text-right
-          %span.badge.badge-info 
+          %span.badge.badge-info{id: "current_rate"}
             = number_to_currency(ci.value_at_the_time, :unit => "$")
         %td.text-center
           %span.badge.badge-dark
@@ -52,3 +53,19 @@
           %span.badge.badge-success 
             = number_to_currency(ci.total, :unit => "$")
 
+:javascript
+  document.addEventListener('DOMContentLoaded', function() {
+    // setInterval(function() {
+    //   alert("hey");
+    //   $.ajax({
+    //     url: '/api/data',
+    //     dataType: 'json',
+    //     success: function(data) {
+    //       // Update the content on the page with the fetched data
+    //       // For example, update the DOM elements with new values
+    //       $('#data-container').text(data.some_value);
+    //     }
+    //   });
+    // }, 600000); // 10 minutes in milliseconds
+    // }, 50000); // 50 seconds in milliseconds
+  });

@@ -26,3 +26,8 @@ while not_created && tries < 3
 		puts "API Error - Coin Code: #{coin.code}"
 	end
 end
+
+
+include CoinsHelper
+api = initiate_coin_api
+r = api.exchange_rates_get_all_current_rates(asset_id_base: "USD")

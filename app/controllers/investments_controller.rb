@@ -1,6 +1,7 @@
 class InvestmentsController < ApplicationController
 
   include ActionView::Helpers::NumberHelper
+  include CoinsHelper
   require 'roo'
   require 'json'
 
@@ -30,6 +31,8 @@ class InvestmentsController < ApplicationController
   # GET /investments/new
   def new
     @investment = Investment.new
+    @coins = Coin.all
+    @exchange_rates = get_all_coins_exchange_rates
   end
 
   # GET /investments/1/edit
